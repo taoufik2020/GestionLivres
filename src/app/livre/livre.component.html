@@ -1,0 +1,82 @@
+<div class="container">
+   
+  <div class="row my-4">
+    <div class="col-md-6">
+      <h3>Liste of Books</h3>
+    </div>
+    <div (click)="bool()" class="col-md-6 text-right" >
+       <button class="btn btn-dark ">
+         <i class="fa fa-plus"></i>New Book
+        </button>
+
+    </div>
+  </div>
+  <div *ngIf="x" class="row" >
+    
+    <div class="col-md-6 mx-auto">
+      <form [formGroup]="BookForm" (ngSubmit)="persiste()">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Title...." formControlName="title">
+          <br>
+          <input type="text" class="form-control" placeholder="author...."formControlName="author">
+          <br>
+          <input type="text" class="form-control"  type="number" placeholder="price..."formControlName="price">
+          <br>
+          <input type="text" class="form-control" type="date" placeholder="Date.."formControlName="publishingDate">   
+          <br>
+           Available: <input type="checkbox" class="  text-left" formControlName="available">
+            <br>
+            <br>
+          <input type="text" class="form-control" type="number" placeholder="quantity"formControlName="quantity">
+          
+        </div>
+        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-send"></i>New Book</button>
+      </form>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div *ngIf="update" class="col-md-3">
+      <form [formGroup]="BookForm" (ngSubmit)="Update()">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Title...." formControlName="title">
+          <br>
+          <input type="text" class="form-control" placeholder="author...."formControlName="author">
+          <br>
+          <input type="text" class="form-control"  type="number" placeholder="price..."formControlName="price">
+          <br>
+          <input type="text" class="form-control" type="date" placeholder="Date.."formControlName="publishingDate">   
+          <br>
+           Available: <input type="checkbox" class="  text-left" formControlName="available">
+            <br>
+            <br>
+          <input type="text" class="form-control" type="number" placeholder="quantity"formControlName="quantity">
+          
+        </div>
+        <button type="submit" class="btn btn-warning btn-block"><i class="fa fa-refresh"></i>Update Book</button>
+      </form>
+    </div>
+    <div class="col-md-6 mx-auto">
+      <ul class="list-group">
+       
+        <li  *ngFor="let book of Books"  class="list-group-item d-flex justify-content-between align-items-center">
+          <button class="btn btn-dark btn-sm">
+            <i (click)="delet(book._id)" class="fa fa-trash"></i>
+
+          </button>
+          {{book.title}}
+          <span class="badge badge-secondary badge-pill">
+           
+          </span>
+          <button (click)="changeUpdate() ; getId(book._id)" class="btn btn-warning btn-sm">
+            <i class="fa fa-pencil"></i>
+
+          </button>
+          
+        </li>
+        
+      </ul>
+
+    </div>
+  </div>
+
+</div>
